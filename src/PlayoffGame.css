@@ -1,0 +1,42 @@
+.PlayoffGame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+.PlayoffGame-game-details,
+.PlayoffGame-pitchers,
+.PlayoffGame-standings {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-size: 17px;
+}
+
+
+.PlayoffGame-game-status,
+.PlayoffGame-game-details,
+.PlayoffGame-pitchers {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.PlayoffGame-time,
+.PlayoffGame-pitcher {
+    margin-right: 15px;
+}
+
+.PlayoffGame-pitcher-name {
+    color: rgb(95, 236, 213);
+    margin-left: 5px;
+}
+
+.PlayoffGame-teams {
+    display: block;
+    justify-content: left;
+    align-content: left;
+    margin-top: 10px;
+    font-size: 20px;
+
+}

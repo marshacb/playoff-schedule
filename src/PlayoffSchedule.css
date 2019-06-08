@@ -1,0 +1,32 @@
+.PlayoffSchedule { 
+   display: flex;
+   justify-content: center;
+   overflow: scroll;
+   max-height: 700px;
+   margin-top: 10px;
+}
+
+.PlayoffSchedule-mlb-logo {
+    width: 140px;
+    height: 140px;
+    margin-right: 15px;
+}
+
+.PlayoffSchedule-header { 
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.PlayoffSchedule-date {
+    display: flex;
+    align-items: right;
+    color: #000089;
+    border-radius: 5px;
+    margin-bottom: 0;
+}
+
+.PlayoffSchedule-sort-btn:hover {
+    background-color: white !important;
+    color:#CD0001
+}
