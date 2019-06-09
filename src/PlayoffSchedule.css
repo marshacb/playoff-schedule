@@ -30,3 +30,9 @@
     background-color: white !important;
     color:#CD0001
 }
+
+.PlayoffSchedule-loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}

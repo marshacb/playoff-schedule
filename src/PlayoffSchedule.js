@@ -14,16 +14,14 @@ class PlayoffSchedule extends Component {
         this.state = {
             playoffGames: [],
             seriesDates: [],
-            seriesGames: []
+            seriesGames: [],
+            isLoaded: false
         }
     }
 
     componentDidMount = async () => {
         const response = await axios.get(MBL_API);
-        this.setState(st => ({
-            seriesGames: this.getSeriesgames(response.data.series), 
-        }))
-        this.getGameDates();
+        this.setState({seriesGames: this.getSeriesgames(response.data.series)}, this.getGameDates)
     }
 
     getSeriesgames = (playoffSeries) => {
@@ -74,7 +72,7 @@ class PlayoffSchedule extends Component {
         }
 
         this.setState(st => (
-            {playoffGames: playoffGames, seriesDates: [...seriesDates]}
+            {playoffGames: playoffGames, seriesDates: [...seriesDates], isLoaded: true}
         ));
     }
 
@@ -106,14 +104,15 @@ class PlayoffSchedule extends Component {
 
 
     render() {
-        return (
+        const result = this.state.isLoaded ? (
           <div>
             <div className="PlayoffSchedule-header">
-                <img 
+              <img
                 className="PlayoffSchedule-mlb-logo"
-                src="https://mk0teamcolorcodtgc6i.kinstacdn.com/wp-content/uploads/2018/03/major_league_baseball_logo-300x182.png" 
-                alt="mlb logo"/>
-                <h1>MLB 2018 Playoff Schedule</h1>
+                src="https://mk0teamcolorcodtgc6i.kinstacdn.com/wp-content/uploads/2018/03/major_league_baseball_logo-300x182.png"
+                alt="mlb logo"
+              />
+              <h1>MLB 2018 Playoff Schedule</h1>
             </div>
             <button
               className="waves-effect light-blue darken-4 btn PlayoffSchedule-sort-btn"
@@ -123,6 +122,25 @@ class PlayoffSchedule extends Component {
             </button>
             <div className="PlayoffSchedule">{this.renderGames()}</div>
           </div>
+        ) : (
+          <div className="PlayoffSchedule-loader-container">
+            <div class="preloader-wrapper big active">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle" />
+                </div>
+                <div class="gap-patch">
+                  <div class="circle" />
+                </div>
+                <div class="circle-clipper right">
+                  <div class="circle" />
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+        return (
+          result
         );
     }
 }
