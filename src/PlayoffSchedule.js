@@ -6,7 +6,7 @@ import './PlayoffSchedule.css';
 import PlayoffGames from './PlayoffGames';
 import {MLB_TEAM_IMAGES} from './helper';
 
-const MBL_API = "http://statsapi.mlb.com/api/v1/schedule/postseason/series?sportId=1&season=2018&hydrate=team,broadcasts(all),seriesStatus(useOverride=true),decisions,person,probablePitcher,linescore(matchup)";
+const MLB_API = "http://statsapi.mlb.com/api/v1/schedule/postseason/series?sportId=1&season=2018&hydrate=team,broadcasts(all),seriesStatus(useOverride=true),decisions,person,probablePitcher,linescore(matchup)";
 
 class PlayoffSchedule extends Component {
     constructor(props){
@@ -21,7 +21,7 @@ class PlayoffSchedule extends Component {
     }
 
     componentDidMount = async () => {
-        const response = await axios.get(MBL_API);
+        const response = await axios.get(MLB_API);
         this.setState({seriesGames: this.getSeriesgames(response.data.series)}, this.getGameDates)
     }
 
