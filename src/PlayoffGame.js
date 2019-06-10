@@ -1,11 +1,30 @@
 import React, { Component } from 'react'
-import './PlayoffGame.css'
+import './PlayoffGame.css';
 
 class PlayoffGame extends Component {
     render() {
-        const teamsPlaying = `${this.props.awayTeam.team.name} @ ${this.props.homeTeam.team.name}`;
-        return (
+        const teamsPlaying = (
           <div>
+            <span>
+              <img
+                src={this.props.awayTeamImage}
+                className="PlayoffGame-team-image"
+                alt={`${this.props.awayTeam.team.name} team logo`}
+              />{" "}
+              {this.props.awayTeam.team.name} @{" "}
+            </span>
+            <span>
+              <img
+                src={this.props.homeTeamImage}
+                className="PlayoffGame-team-image"
+                alt={`${this.props.homeTeam.team.name} team logo`}
+              />{" "}
+              {this.props.homeTeam.team.name}
+            </span>
+          </div>
+        );
+        return (
+          <div className="PlayoffGame-card">
             <div className="row">
               <div className="col s12 m12">
                 <div className="card blue-grey darken-1">
@@ -13,13 +32,13 @@ class PlayoffGame extends Component {
                     <div className="PlayoffGame">
                       <div className="PlayoffGame-game-status">
                         <div className="PlayoffGame-standings">
-                          <div>
+                          <div className="PlayoffGame-short-description">
                             {this.props.status.shortDescription}
                           </div>
                           <div>{this.props.status.result}</div>
                         </div>
                         <div className="PlayoffGame-teams">
-                          {teamsPlaying}
+                          <div>{teamsPlaying}</div>
                         </div>
                       </div>
                       <div className="PlayoffGame-game-details">

@@ -4,6 +4,7 @@ import moment from 'moment';
 import uuid from 'uuid/v4';
 import './PlayoffSchedule.css';
 import PlayoffGames from './PlayoffGames';
+import {MLB_TEAM_IMAGES} from './helper';
 
 const MBL_API = "http://statsapi.mlb.com/api/v1/schedule/postseason/series?sportId=1&season=2018&hydrate=team,broadcasts(all),seriesStatus(useOverride=true),decisions,person,probablePitcher,linescore(matchup)";
 
@@ -71,9 +72,30 @@ class PlayoffSchedule extends Component {
            }
         }
 
-        this.setState(st => (
-            {playoffGames: playoffGames, seriesDates: [...seriesDates], isLoaded: true}
-        ));
+        this.setState({playoffGames: playoffGames, seriesDates: [...seriesDates], isLoaded: true},this.getTeamImages);
+    }
+
+    getTeamImages = () => {
+        const playOffGamesCopy = this.state.playoffGames;
+        for(let playoffGame of playOffGamesCopy) {
+            for(let game of playoffGame.games) {
+                const awayTeam = game.teams.away;
+                const homeTeam = game.teams.home;
+                
+                if (MLB_TEAM_IMAGES[awayTeam.team.name]){
+                    game.awayTeamImage =
+                      MLB_TEAM_IMAGES[
+                        awayTeam.team.name
+                      ];
+                }
+                 if (MLB_TEAM_IMAGES[homeTeam.team.name]) {
+                   game.homeTeamImage =
+                     MLB_TEAM_IMAGES[homeTeam.team.name];
+                 }
+            }
+
+            this.setState({playoffGames: playOffGamesCopy});
+        }
     }
 
 
@@ -124,16 +146,16 @@ class PlayoffSchedule extends Component {
           </div>
         ) : (
           <div className="PlayoffSchedule-loader-container">
-            <div class="preloader-wrapper big active">
-              <div class="spinner-layer spinner-blue-only">
-                <div class="circle-clipper left">
-                  <div class="circle" />
+            <div className="preloader-wrapper big active">
+              <div className="spinner-layer spinner-blue-only">
+                <div className="circle-clipper left">
+                  <div className="circle" />
                 </div>
-                <div class="gap-patch">
-                  <div class="circle" />
+                <div className="gap-patch">
+                  <div className="circle" />
                 </div>
-                <div class="circle-clipper right">
-                  <div class="circle" />
+                <div className="circle-clipper right">
+                  <div className="circle" />
                 </div>
               </div>
             </div>

@@ -3,13 +3,8 @@ import moment from 'moment';
 import PlayoffGame from "./PlayoffGame";
 
 class PlayoffGames extends Component {
-    constructor(props) {
-        super(props);
-
-        this.renderPlayoffGames = this.renderPlayoffGames.bind(this)
-    }
-
-    renderPlayoffGames() {
+    
+    renderPlayoffGames = () => {
         return (
             <div>
                 {this.props.games.map(game => (
@@ -21,6 +16,8 @@ class PlayoffGames extends Component {
                     homeTeam={game.teams.home} 
                     status={game.seriesStatus} 
                     broadcasts={game.broadcasts} 
+                    awayTeamImage={game.awayTeamImage}
+                    homeTeamImage={game.homeTeamImage}
                     />
                 ))}
             </div>
